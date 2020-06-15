@@ -72,41 +72,44 @@ The above copyright notice and this permission notice shall be included in all c
                                                 <th style="font-weight: 500;">Status</th>
                                             </thead>
                                             <tbody>
+                                                <?php $session = \Config\Services::session(); ?>
                                                 <?php foreach($tickets as $value){  ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $value['id'] ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php  echo $value['email'] ?>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        <?php  echo $value['phone'] ?>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        <?php  echo $value['subject'] ?>
-                                                    </td>
-                                                    <td> 
-                                                    
-                                                    <?php if($value['priority']=='low'){ ?>
-                                                    <span class="badge btn-success p-1 pl-3 pr-3">Low</span>
-                                                    <?php }else if($value['priority']=='high'){ ?>
-                                                    <span class="badge btn-danger p-1 pl-3 pr-3">High</span>
-                                                    <?php }else{ ?>
-                                                    <span class="badge badge-info"><?php  echo $value['priority'] ; ?></span>
-                                                    <?php } ?>
-                                                    </td>
-                                                    <td>
+                                                    <?php if($value['email']==$session->get('email')){ ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $value['id'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php  echo $value['email'] ?>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            <?php  echo $value['phone'] ?>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            <?php  echo $value['subject'] ?>
+                                                        </td>
+                                                        <td> 
+                                                        
+                                                        <?php if($value['priority']=='low'){ ?>
+                                                        <span class="badge btn-success p-1 pl-3 pr-3">Low</span>
+                                                        <?php }else if($value['priority']=='high'){ ?>
+                                                        <span class="badge btn-danger p-1 pl-3 pr-3">High</span>
+                                                        <?php }else{ ?>
+                                                        <span class="badge badge-info"><?php  echo $value['priority'] ; ?></span>
+                                                        <?php } ?>
+                                                        </td>
+                                                        <td>
 
-                                                    <?php if($value['status']=='Open'){ ?>
-                                                    <span class="badge btn-success p-1 pl-3 pr-3">Open</span>
-                                                    <?php }else if($value['status']=='Closed'){ ?>
-                                                    <span class="badge btn-danger p-1 pl-3 pr-3">Closed</span>
-                                                    <?php }else{ ?>
-                                                    <span class="badge badge-info">Closed</span>
+                                                        <?php if($value['status']=='Open'){ ?>
+                                                        <span class="badge btn-success p-1 pl-3 pr-3">Open</span>
+                                                        <?php }else if($value['status']=='Closed'){ ?>
+                                                        <span class="badge btn-danger p-1 pl-3 pr-3">Closed</span>
+                                                        <?php }else{ ?>
+                                                        <span class="badge badge-info">Closed</span>
+                                                        <?php } ?>
+                                                        </td>
+                                                    </tr>
                                                     <?php } ?>
-                                                    </td>
-                                                </tr>
                                                 <?php } ?>
                                             </tbody>
                                             <?php } else { ?>
